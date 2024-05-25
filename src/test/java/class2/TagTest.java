@@ -15,11 +15,12 @@ public class TagTest {
 
         System.out.println(driver.getCurrentUrl());
         System.out.println(driver.getTitle());
+
         System.out.println("==================================================");
         List<WebElement> webElements = driver.findElements(By.tagName("a"));
-        for (WebElement element:webElements){
-
-            System.out.println(element.getText());
+        System.out.println("Count : " + webElements.size());
+        for (WebElement element : webElements) {
+            System.out.println(element.getText()+" "+element.getAttribute("href"));
         }
 
         driver.quit();
