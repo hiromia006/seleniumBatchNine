@@ -2,9 +2,12 @@ package class4;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WindowType;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
@@ -13,11 +16,19 @@ public class TabsTest {
         WebDriver driver = new FirefoxDriver();
         driver.get("https://demoqa.com/browser-windows");
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        //  implicitlyWait
+//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 
-        String parentPage=driver.getWindowHandle();
+        //Explicit wait
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+
+
+        String parentPage = driver.getWindowHandle();
         driver.getWindowHandles();
-        System.out.println("Main Window : " + driver.findElement(By.className("text-center")).getText());
+
+        WebElement element=driver.findElement(By.className("text-center"));
+        wait.until(ExpectedConditions.visibilityOf(element));
+        System.out.println("Main Window : " + element.getText());
 
         Thread.sleep(3000);
         driver.switchTo().newWindow(WindowType.TAB);
