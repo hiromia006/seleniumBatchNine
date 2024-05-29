@@ -17,7 +17,7 @@ public class TabsTest {
         driver.get("https://demoqa.com/browser-windows");
         driver.manage().window().maximize();
         //  implicitlyWait
-//        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 
         //Explicit wait
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
@@ -27,8 +27,11 @@ public class TabsTest {
         driver.getWindowHandles();
 
         WebElement element=driver.findElement(By.className("text-center"));
-        wait.until(ExpectedConditions.visibilityOf(element));
-        System.out.println("Main Window : " + element.getText());
+//        wait.until(ExpectedConditions.visibilityOf(element));
+        wait.until(ExpectedConditions.alertIsPresent()).getText();
+//        System.out.println("Main Window : " + element.getText());
+        wait.until(ExpectedConditions.visibilityOf(element)).click();
+        System.out.println("Main Window : " + wait.until(ExpectedConditions.visibilityOf(element)).getText());
 
         Thread.sleep(3000);
         driver.switchTo().newWindow(WindowType.TAB);
