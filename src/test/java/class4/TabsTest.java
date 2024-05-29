@@ -4,12 +4,16 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WindowType;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Wait;
+
+import java.time.Duration;
 
 public class TabsTest {
     public static void main(String[] args) throws InterruptedException {
         WebDriver driver = new FirefoxDriver();
         driver.get("https://demoqa.com/browser-windows");
         driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
 
         String parentPage=driver.getWindowHandle();
         driver.getWindowHandles();
@@ -34,8 +38,6 @@ public class TabsTest {
 
         driver.switchTo().window(parentPage);
         Thread.sleep(3000);
-
-
 
         driver.quit();
     }
