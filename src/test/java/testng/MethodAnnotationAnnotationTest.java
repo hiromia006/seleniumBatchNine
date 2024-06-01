@@ -1,14 +1,10 @@
 package testng;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.time.Duration;
-
-public class MethodAnnotationTest extends BaseMethodTest {
+public class MethodAnnotationAnnotationTest extends BaseMethodAnnotationTest {
     @Test
     public void checkTittle() {
         Assert.assertEquals(driver.getTitle(), "Swag Labs");
